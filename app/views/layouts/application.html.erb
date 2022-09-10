@@ -11,6 +11,20 @@
   </head>
 
   <body>
+    <header>
+      <% if customer_signed_in? %>
+        <li>
+          <%= link_to "Log out", destroy_customer_session_path, method: :delete %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "Sign up", new_customer_registration_path %>
+        </li>
+        <li>
+          <%= link_to "Sign in", new_customer_session_path %>
+        </li>
+      <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>
