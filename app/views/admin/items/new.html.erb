@@ -9,7 +9,7 @@
   <h4>Price</h4>
   <%= f.text_field :price %>
   <h4>販売ステータス</h4>
-  <%= f.select :is_sale, [['販売中', true], ['販売停止', false]] %>
+  <%= f.select :is_active, [['販売中', true], ['販売停止', false]] %>
   <%= f.submit 'Create Item' %>
 <% end %>
 
