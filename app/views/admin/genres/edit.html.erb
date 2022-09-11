@@ -1,2 +1,5 @@
-<h1>Admin::Genres#edit</h1>
-<p>Find me in app/views/admin/genres/edit.html.erb</p>
+<h1>Genre Edit</h1>
+<%= form_with model: @genre, url: admin_genre_path, method: :patch do |f| %>
+  <%= f.text_field :name %>
+  <%= f.submit 'Update Genre' %>
+<% end %>

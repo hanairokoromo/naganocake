@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  root to: "public/homes#top"
+  root to: "admin/homes#top"
   namespace :public do
     root to: "homes#top"
     get 'homes/about'
   end
   namespace :admin do
+    root to: "admin/homes#top"
     resources :genres, only: [:index, :create, :edit, :update]
   end
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
