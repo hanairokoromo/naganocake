@@ -1,2 +1,16 @@
-<h1>Admin::Items#edit</h1>
-<p>Find me in app/views/admin/items/edit.html.erb</p>
+<h1>Editting Item</h1>
+<%= form_with model: @item, url: admin_item_path(@item), method: :patch do |f| %>
+  <h4>Item name</h4>
+  <%= f.text_field :name %>
+  <h4>Image</h4>
+  <%= f.file_field :image %>
+  <h4>Introduction</h4>
+  <%= f.text_area :introduction %>
+  <h4>Genre</h4>
+  <%= f.collection_select(:genre_id, @genres, :id, :name) %>
+  <h4>Price</h4>
+  <%= f.text_field :price %>
+  <h4>販売ステータス</h4>
+  <%= f.select :is_active, [['販売中', true], ['販売停止', false]] %>
+  <%= f.submit 'Create Item' %>
+<% end %>
