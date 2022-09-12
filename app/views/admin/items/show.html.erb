@@ -1,2 +1,10 @@
-<h1>Admin::Items#show</h1>
-<p>Find me in app/views/admin/items/show.html.erb</p>
+<h1>商品詳細</h1>
+<%= image_tag @item.image, size: "50×50" %>
+  <td><%= @item.name %></td>
+  <%= @item.price %>
+  <%= @item.introduction %>
+  <% if @item.is_active == true %>
+    <p>販売中</p>
+  <% else %>
+    <p>販売停止中</p>
+  <% end %>

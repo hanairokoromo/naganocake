@@ -6,6 +6,8 @@
   <%= f.file_field :image %>
   <h4>Introduction</h4>
   <%= f.text_area :introduction %>
+  <h4>Genre</h4>
+  <%= f.collection_select(:genre_id, @genres, :id, :name) %>
   <h4>Price</h4>
   <%= f.text_field :price %>
   <h4>販売ステータス</h4>
