@@ -1,0 +1,12 @@
+<h1>会員一覧</h1>
+<% @customers.each do |customer| %>
+  <%= customer.id %>
+  <%= customer.last_name %>
+  <%= customer.first_name %>
+  <%= customer.email %>
+  <% if customer.is_deleted == true %>
+    <p>退会済み</p>
+  <% else %>
+    <p>有効</p>
+  <% end %>
+<% end %>
