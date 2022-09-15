@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root to: "admin/homes#top"
   
   namespace :public do
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
     root to: "admin/homes#top"
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
   end
   
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
