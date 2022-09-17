@@ -17,5 +17,16 @@
 
 <% @order_details.each do |order_details| %>
   <h4>商品名</h4>
-  <%= order_details.name
-
+  <%= order_details.item.name %>
+  <h4>価格</h4>
+  <%= order_details.price %>
+  <h4>数量</h4>
+  <%= order_details.amount %>
+  <h4>合計</h4>
+  <%= order_details.total_payment %>
+  <%= form_with model: order_details, url: admin_order_detail_path, method: :patch do |f| %>
+    <h4>製作ステータス</h4>
+    <%= f.select :maiking_status, Oder_detail.making_status.keys %>
+    <%= f.submit '更新' %>
+  <% end %>
+<% end %>
