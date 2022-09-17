@@ -1,0 +1,21 @@
+<h1>注文履歴詳細</h1>
+<h4>購入者</h4>
+<%= @order.name %>
+<H4>注文日</H4>
+<%= @order.created_at %>
+<h4>配送先</h4>
+<%= @order.address %>
+<h4>支払方法</h4>
+<%= @order.payment_method %>
+<h4>料金</h4>
+<%= @order.total_payment %>
+<%= form_with model: @order, url: admin_order_path(@order), method: :patch do |f| %>
+  <h4>注文ステータス</h4>
+  <%= f.select :status, Order.status.keys %>
+  <%= f.submit '更新' %>
+<% end %>
+
+<% @order_details.each do |order_details| %>
+  <h4>商品名</h4>
+  <%= order_details.name
+
