@@ -1,29 +1,53 @@
-<h1>会員編集画面</h1>
-<%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集
+<div class="row">
+  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <h2 class="head-line title_h2 text-center">
+      <%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集
+    </h2>
 
-<%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
-  <h4>姓</h4>
-  <%= f.text_field :last_name %>
-  <h4>名</h4>
-  <%= f.text_field :first_name %>
-  <h4>姓カナ</h4>
-  <%= f.text_field :last_name_kana %>
-  <h4>名カナ</h4>
-  <%= f.text_field :first_name_kana %>
-  <h4>メールアドレス</h4>
-  <%= f.text_field :email %>
-  <h4>郵便番号</h4>
-  <%= f.text_field :postal_code %>
-  <h4>住所</h4>
-  <%= f.text_field :address %>
-  <h4>電話番号</h4>
-  <%= f.text_field :telephone_number %>
-  <h4>会員ステータス</h4>
-  <%= f.radio_button :is_deleted, true %>
-  <%= f.label :is_deleted, "退会済み" %>
-  <%= f.radio_button :is_deleted, false %>
-  <%= f.label :is_deleted, "有効" %>
-  <%= f.submit 'Update' %>
-<% end %>
+   <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
+   <div class="form-group">
+     <label for="last_name">姓</label>
+　　　<%= f.text_field :last_name, class: "form-control last_name" %>
+　 </div>
+　 <div class="form-grouo">
+　   <label for="first_name">名</label>
+　   <%= f.text_field :first_name, class: "form-control first_name" %>
+　 </div>
+　 <div class="form-group">
+　   <label for="last_name_kana">姓カナ</label>
+　   <%= f.text_field :last_name_kana, class: "form-control last_name_kana" %>
+　 </div>
+　 <div class="form-group">
+　   <label for="first_name_kana">名カナ</label>
+　   <%= f.text_field :first_name_kana, class: "form-control first_name_kana" %>
+　 </div>
+　 <div class="form-group">
+　   <label for="email">メールアドレス</label>
+　   <%= f.text_field :email, class: "form-control email" %>
+　 </div>
+　 <div class="form-group">
+　   <label for="postal_code">郵便番号</label>
+　   <%= f.text_field :postal_code, class: "form-control postal_code" %>
+　 </div>
+　 <div class="form-group">
+　   <label for="telephone_number">電話番号</label>
+　   <%= f.text_field :telephone_number, class: "form-control telephone_number" %>
+　 </div>
+　 <div class="form-group">
+　   <label for="is_deleted">会員ステータス</label>
+　   <%= f.radio_button :is_deleted, true %>
+     <%= f.label :is_deleted, "退会済み", {value: :true, style: "display: inline-block;"} %>
+     <%= f.radio_button :is_deleted, false %>
+     <%= f.label :is_deleted, "有効", {value: :false, style: "display: inline-block;"} %>
+　 </div>
+　 <div class="form-group">
+　   <%= f.submit '更新', class: "btn btn-success" %>
+　 </div>
+   <% end %>
+   <div>
+     <%= link_to "戻る", admin_customer_path, class: "glyphicon glyphicon-home btn btn-info" %>
+   </div>
+  </div>
+</div>
 
 
