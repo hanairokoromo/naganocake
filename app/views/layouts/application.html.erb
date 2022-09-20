@@ -2,28 +2,60 @@
 <html>
   <head>
     <title>Naganocake</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+    <script src="https://kit.fontawesome.com/1b2f943c3c.js" crossorigin="anonymous"></script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <header>
-      <% if customer_signed_in? %>
-        <li>
-          <%= link_to "Log out", destroy_customer_session_path, method: :delete %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to "Sign up", new_customer_registration_path %>
-        </li>
-        <li>
-          <%= link_to "Sign in", new_customer_session_path %>
-        </li>
-      <% end %>
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <span>Nagano cake</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if admin_signed_in? %>
+                <%= link_to "Naganocake", admin_top_path, class: "fas fa-birthday-cake" %>
+              <% else %>
+                <%= link_to "Naganocake", root_path, class: "fas fa-birthday-cake" %>
+              <% end %>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+              <% if customer_signed_in? %>
+              <li class="nav-item">
+                <%= link_to destroy_customer_session_path, method: :delete, class: "btn btn-link" do %>
+                <i class="fas fa-sign-out-alt" style="color: white;"></i>
+                <span class="icon-nmae text-light">Log out</span>
+                <% end %>
+              </li>
+              <% else %>
+              <li class="nav-item">
+                <%= link_to new_customer_registration_path, class: "btn btn-link" do %>
+                <i class="fas fa-user-plus" style="color: white;"></i>
+                <span class="icon-name text-light">Sign in</span>
+              <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_customer_session_path, class: "btn btn-link" do %>
+                <i class="fas fa-sign-in-alt" style="color: white;"></i>
+                <span class="icon-name text-light">Log in</span>
+                <% end %>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
     <%= yield %>
   </body>
