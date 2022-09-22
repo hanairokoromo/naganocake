@@ -1,25 +1,64 @@
-<h1>会員詳細画面</h1>
-<%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細
-<p>顧客ID</p>
-<%= @customer.id %>
-<% if @customer.is_deleted == true %>
-  <p>退会済み</p>
-<% else %>
-  <p>有効</p>
-<% end %>
-<p>姓</p>
-<%= @customer.last_name %>
-<p>名</p>
-<%= @customer.first_name %>
-<p>姓カナ</p>
-<%= @customer.last_name_kana %>
-<p>名カナ</p>
-<%= @customer.first_name_kana %>
-<p>メールアドレス</p>
-<%= @customer.email %>
-<p>郵便番号</p>
-<%= @customer.postal_code %>
-<p>住所</p>
-<%= @customer.address %>
-<p>電話番号</p>
-<%= @customer.telephone_number %>
+<h1 class="head-line title_h1 text-center">
+  <%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細
+</h1>
+<div class="row">
+  <div class="col-md-8 offset-md-1">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>
+            <p>顧客ID</p>
+            <%= @customer.id %>
+            <% if @customer.is_deleted == true %>
+              <p>退会済み</p>
+            <% else %>
+              <p>有効</p>
+            <% end %>
+          </td>
+          <td>
+            <p>姓</p>
+            <%= @customer.last_name %>
+          </td>
+          <td>
+            <p>名</p>
+            <%= @customer.first_name %>
+          </td>
+          <td>
+            <p>姓カナ</p>
+            <%= @customer.last_name_kana %>
+          </td>
+          <td>
+            <p>名カナ</p>
+            <%= @customer.first_name_kana %>
+          </td>
+          <td>
+            <p>メールアドレス</p>
+            <%= @customer.email %>
+          </td>
+          <td>
+            <p>郵便番号</p>
+            <%= @customer.postal_code %>
+          </td>
+          <td>
+            <p>住所</p>
+            <%= @customer.address %>
+          </td>
+          <td>
+            <p>電話番号</p>
+            <%= @customer.telephone_number %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <%= link_to "戻る", admin_customers_path(@customer), class: "glyphicon glyphicon-home btn btn-info" %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
