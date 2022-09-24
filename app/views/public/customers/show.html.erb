@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-md-8 offset-md-1">
+        <h2 class="head-line title_h2 text-center">マイページ</h2>
+        <p><strong class="infomation-link"><i class="far fa-user"></i>登録情報</strong>
+          <%= link_to "編集する", edit_public_customer_path, class: "glyphicon glyphicon-pencil btn btn-warning" %>
+        </p>
+        <table class="table table-bordered table-condensed">
+            <tbody>
+                <tr>
+                    <tr>
+                        <td><%= @customer.last_name %> <%= @customer.first_name %></td>
+                        <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
+                        <td><%= @customer.postal_code %></td>
+                        <td><%= @customer.address %></td>
+                        <td><%= @customer.telephone_number %></td>
+                    </tr>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
