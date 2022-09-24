@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   namespace :public do
     root to: "homes#top"
     get 'homes/about'
-    resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdraw]
+    resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdraw] do
+      collection do
+        get 'unsubscribe'
+        patch 'withdraw'
+      end
+    end
   end
   
   namespace :admin do
