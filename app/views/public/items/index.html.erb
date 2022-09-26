@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-md-8 offset-md-1">
+        <h2 class="head-line title_h2 text-center">商品一覧</h2><p>（全<%= @items.count %>件）</p>
+        <table class="table">
+            <thead>
+              <tr>
+                <th>商品画像</th>
+                <th>商品名</th>
+                <th>価格</th>
+                <th>販売ステータス</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @items.each do |item| %>
+              <tr>
+                <td>
+                    <%= link_to public_item_path(item), class: "btn-link" do %>
+                      <%= image_tag item.image, size: "5×5" %>
+                    <% end %>
+                </td>
+                <td><%= item.name %></td>
+                <td><%= item.price %></td>
+                <td>
+                  <% if item.is_active == true %>
+                    <p><i class="fas fa-bullseye red"></i>販売中</p>
+                  <% else %>
+                    <p><i class="fas fa-bullseye blue"></i>販売停止中</p>
+                  <% end %>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>
