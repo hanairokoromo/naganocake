@@ -1,2 +1,27 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class="row">
+    <div class="col-md-8 offset-md-1">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td><%= image_tag @item.image, size: "5×5" %></td>
+              <td><%= @item.name %></td>
+              <td><%= @item.price %></td>
+              <td><%= @item.introduction %></td>
+              <td>
+                <% if @item.is_active == true %>
+                  <p><i class="fas fa-bullseye red"></i>販売中</p>
+                <% else %>
+                  <p><i class="fas fa-bullseye blue"></i>販売停止中</p>
+                <% end %>
+              </td>
+              <td><%= link_to "戻る", public_items_path(@item), class: "btn btn-sm btn-success" %></td>
+            </tr>
+          </tbody>
+        </table>
+        <%= form_with model: @cart_item, url: public_cart_items_path, method: :post do |f| %>
+          <%= f.hidden_field :item_id, :value => "item_id" %>
+          <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10], include_blank: "個数選択" %>
+          <%= f.submit "カートに入れる", class: "btn btn-success" %>
+        <% end %>
+    </div>
+</div>
