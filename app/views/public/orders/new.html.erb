@@ -22,6 +22,20 @@
                 <%= f.collection_select :address_select_id, current_customer.addresses, :id, :full_address, { prompt: '選択してください' }, class: "form-control" %>
             </div>
             
+            <%= f.radio_button :address_id, 3 %>
+            <%= f.label :address, '新しいお届け先', %></br>
+            
+            <%= f.label :postal_code, '郵便番号' %>
+            <%= f.text_field :postal_code, class: "form-control" %>
+            
+            <%= f.label :address, '住所' %>
+            <%= f.text_field :address, class: "form-control" %>
+            
+            <%= f.label :name, '名前' %>
+            <%= f.text_field :name, class: "form-control" %>
+            
+            <%= f.submit '確認画面へ進む', class: "btn btn-success text-center" %>
         </div>
+        <% end %>
     </div>
 </div>
