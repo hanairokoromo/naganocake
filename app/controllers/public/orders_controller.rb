@@ -19,6 +19,22 @@ class Public::OrdersController < ApplicationController
     end
     @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
   end
+  
+  def create
+    @cart_items = current_customer.cart_items
+    @order = current_customer.orders.new(order_params)
+    @order.save
+    @cart_items.each do |cart_item|
+      order_details = OrderDetails.new
+      order_details.item_id = cart_item.item_id
+      order_details.tax_price = cart_item.subtotal.floor
+      order_details.amount = cart_item.amount
+      order_details.order_id = @order_id
+      order_details.save
+    end
+    @cart_item.destroy_all
+    redirect_to public_complete_orders_path
+  end
 
   def complete
   end
@@ -32,6 +48,6 @@ class Public::OrdersController < ApplicationController
   private
   
   def order_params
-    params.require(:order).permit(:payment_method, :postal_code, :address, :name)
+    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :customer_id, :shipping_cost, :total_payment)
   end
 end
