@@ -6,12 +6,12 @@
 <h4>配送先</h4>
 <%= @order.address %>
 <h4>支払方法</h4>
-<%= @order.payment_method %>
+<%= @order.payment_method_i18n %>
 <h4>料金</h4>
 <%= @order.total_payment %>
 <%= form_with model: @order, url: admin_order_path(@order), method: :patch do |f| %>
   <h4>注文ステータス</h4>
-  <%= f.select :status, Order.status.keys %>
+  <%= f.select :statuses, Order.statuses.keys %>
   <%= f.submit '更新' %>
 <% end %>
 
