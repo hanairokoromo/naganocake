@@ -11,7 +11,7 @@ class Public::OrdersController < ApplicationController
     if params[:order][:address_id] == "1"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
-      @order.name = current_customer.first_name + current_customer.last_name
+      @order.name = current_customer.last_name + current_customer.first_name
     elsif params[:order][:address_id] == "2"
       @order.postal_code = Address.find(params[:order][:address_id]).postal_code
       @order.address = Address.find(params[:order][:address_id]).address
@@ -25,14 +25,14 @@ class Public::OrdersController < ApplicationController
     @order = current_customer.orders.new(order_params)
     @order.save
     @cart_items.each do |cart_item|
-      order_details = OrderDetails.new
-      order_details.item_id = cart_item.item_id
-      order_details.tax_price = cart_item.subtotal.floor
-      order_details.amount = cart_item.amount
-      order_details.order_id = @order_id
-      order_details.save
+      order_detail = OrderDetails.new
+      order_detail.item_id = cart_item.item_id
+      order_detail.tax_price = cart_item.subtotal.floor
+      order_detail.amount = cart_item.amount
+      order_detail.order_id = @order_id
+      order_detail.save
     end
-    @cart_item.destroy_all
+    @cart_items.destroy_all
     redirect_to public_complete_orders_path
   end
 

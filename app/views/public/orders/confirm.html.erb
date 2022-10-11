@@ -18,12 +18,12 @@
             <% @cart_items.each do |cart_item| %>
             <tr>
                 <td>
-                    <%= image_tag cart_item.item, :image, class: "rounded float-left", height: "50" %>
-                    <%= cart_item.name %>
+                    <%= image_tag cart_item.item.image, size: "5×5" %>
+                    <%= cart_item.item.name %>
                 </td>
-                <td><%= cart_item.item.with_tax_price.floor.to_s(:delimited, delimiter: ',') %></td>
+                <td><%= cart_item.item.with_tax_price.floor.to_s %></td>
                 <td><%= cart_item.amount %></td>
-                <td><%= cart_item.subtotal.floor.to_s(delimited, delimiter: ',') %></td>
+                <td><%= cart_item.subtotal.floor.to_s %></td>
             </tr>
             <% end %>
         </tbody>
