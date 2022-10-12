@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   root to: "public/homes#top"
   
-  namespace :public do
-    root to: "homes#top"
+  scope module: :public do
     get 'homes/about'
     resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdraw] do
       collection do

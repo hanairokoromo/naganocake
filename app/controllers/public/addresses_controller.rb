@@ -9,7 +9,7 @@ class Public::AddressesController < ApplicationController
     @address.customer_id = current_customer
     @addresses = Address.all
     @address.save
-    redirect_to public_addresses_path
+    redirect_to addresses_path
   end
 
   def edit
@@ -18,7 +18,7 @@ class Public::AddressesController < ApplicationController
   
   def update
     @address.update
-    redirect_to public_addresses_path
+    redirect_to addresses_path
   end
   
   private

@@ -2,7 +2,7 @@
   <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
     <h2 class="head-line title_h2 text-center">登録情報編集</h2>
 
-   <%= form_with model: @customer, url: public_customer_path(@customer), method: :patch do |f| %>
+   <%= form_with model: @customer, url: customer_path(@customer), method: :patch do |f| %>
    <div class="form-group">
      <label for="last_name">姓</label>
 　　　<%= f.text_field :last_name, class: "form-control last_name" %>
@@ -36,8 +36,8 @@
 　 </div>
    <% end %>
    <div>
-     <%= link_to "戻る", public_customer_path, class: "glyphicon glyphicon-home btn btn-info" %>
-     <%= link_to "退会する", unsubscribe_public_customers_path, class: "glyphicon glyphicon-tint btn btn-danger" %>
+     <%= link_to "戻る", customer_path, class: "glyphicon glyphicon-home btn btn-info" %>
+     <%= link_to "退会する", unsubscribe_customers_path, class: "glyphicon glyphicon-tint btn btn-danger" %>
    </div>
   </div>
 </div>
