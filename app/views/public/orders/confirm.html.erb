@@ -61,7 +61,7 @@
         </P>
     </div>
     
-    <%= form_with model: @order, url: public_orders_path do |f| %>
+    <%= form_with model: @order, url: orders_path do |f| %>
     <%= f.hidden_field :payment_method %>
     <%= f.hidden_field :shipping_cost, value: 800 %>
     <%= f.hidden_field :customer_id, value: @order.customer_id %>

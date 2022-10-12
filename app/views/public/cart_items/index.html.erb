@@ -2,7 +2,7 @@
     <div class="col-md-8 offset-md-1">
         <h2 class="mt-3">カート</h2>
         <div>
-            <%= link_to "カートを空にする", destroy_all_public_cart_items_path, method: :delete, class: "btn btn-danger" %>
+            <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, class: "btn btn-danger" %>
         </div>
         <table class="table">
             <thead>
@@ -29,7 +29,7 @@
                         <% end %>
                     </td>
                     <td><%= cart_item.subtotal.floor.to_s(:delimited, delimiter: ',') %></td>
-                    <td><%= link_to "削除する", public_cart_item_path(cart_item), method: :delete, class: "btn btn-danger" %></td>
+                    <td><%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-danger" %></td>
                 </tr>
                 <% end %>
             </tbody>
