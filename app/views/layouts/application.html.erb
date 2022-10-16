@@ -33,22 +33,40 @@
             <ul class="navbar-nav ml-auto">
               <% if customer_signed_in? %>
               <li class="nav-item">
+                <%= link_to customer_path(current_customer), class: "btn btn-link" do %>
+                <i class="fas fa-users" style="color: white;"></i>
+                <span class="icon-name text-light">マイページ</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to items_path, class: "btn btn-link" do %>
+                <i class="fa-solid fa-shop" style="color: white;"></i>
+                <span class="icon-name text-light">商品一覧</span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to cart_items_path, class: "btn btn-link" do %>
+                <i class="fa-solid fa-cart-shopping" style="color: white;"></i>
+                <span class="icon-name text-light">カート</span>
+                <% end %>
+              </li>
+              <li class="nav-item">
                 <%= link_to destroy_customer_session_path, method: :delete, class: "btn btn-link" do %>
                 <i class="fas fa-sign-out-alt" style="color: white;"></i>
-                <span class="icon-nmae text-light">Log out</span>
+                <span class="icon-nmae text-light">ログアウト</span>
                 <% end %>
               </li>
               <% else %>
               <li class="nav-item">
                 <%= link_to new_customer_registration_path, class: "btn btn-link" do %>
                 <i class="fas fa-user-plus" style="color: white;"></i>
-                <span class="icon-name text-light">Sign in</span>
+                <span class="icon-name text-light">新規登録</span>
               <% end %>
               </li>
               <li class="nav-item">
                 <%= link_to new_customer_session_path, class: "btn btn-link" do %>
                 <i class="fas fa-sign-in-alt" style="color: white;"></i>
-                <span class="icon-name text-light">Log in</span>
+                <span class="icon-name text-light">ログイン</span>
                 <% end %>
               </li>
               <% end %>

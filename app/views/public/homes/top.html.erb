@@ -8,13 +8,22 @@
                 !!
             </h1>
         </div>
-        <div class="btn-wrapper col-10 mx-auto">
-            <div class="row">
-                <%= link_to "Log in", new_customer_session_path, class: "btn btn-info btn-sm btn-block mb-3" %>
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+            <h2 class="new-items">新着商品</h2>
+            <% @items.each do |item| %>
+            <div class="col-xs-3">
+                <div class="mb-3">
+                    <div class="item">
+                        <%= link_to item_path(item.id) do %>
+                        <%= image_tag item.image %>
+                        <% end %>
+                        <h5 class="item-name"><%= item.name %></h5>
+                        <p class="item-price">¥<%= item.price.to_s %>（税抜）</p>
+                        <%= link_to "この商品を見る", item_path(item.id), class: "btn btn-primary" %>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <%= link_to "Sign up", new_customer_registration_path, class: "btn btn-success btn-sm btn-block" %>
-            </div>
+            <% end %>
         </div>
     </div>
 </div>
