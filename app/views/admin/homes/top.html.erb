@@ -5,7 +5,7 @@
   <h4>購入者</h4>
   <%= order.name %>
   <h4>注文個数</h4>
-  <%= order.amount %>
+  <%= order.order_details.all.sum(:amount) %>
   <h4>注文ステータス</h4>
   <%= order.status %>
 <% end %>
