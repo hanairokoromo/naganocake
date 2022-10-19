@@ -1,11 +1,10 @@
 class ApplicationController < ActionController::Base
-    before_action :authenticate_customer!, except: [:top, :about, :public_action]
     before_action :configure_permitted_parameters, if: :devise_controller?
     
     def after_sign_in_path_for(resource)
         if customer_signed_in?
-          customer_path(resource)
-        else
+             customer_path(resource)
+        else admin_sign_in?
           admin_root_path
         end
     end
