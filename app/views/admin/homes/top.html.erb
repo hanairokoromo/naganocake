@@ -1,7 +1,7 @@
 <h1>注文履歴一覧</h1>
 <% @orders.each do |order| %>
   <h4>購入日時</h4>
-  <%= order.created_at %>
+  <%= link_to order.created_at.to_s, admin_order_path(order) %>
   <h4>購入者</h4>
   <%= order.name %>
   <h4>注文個数</h4>
