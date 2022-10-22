@@ -1,4 +1,5 @@
 class Public::OrdersController < ApplicationController
+  
   def new
     @addresses = Address.all
     @order = Order.new
@@ -43,7 +44,6 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @order = current_customer
     @orders = Order.all
   end
 
@@ -56,6 +56,6 @@ class Public::OrdersController < ApplicationController
   private
   
   def order_params
-    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :customer_id, :shipping_cost, :total_payment)
+    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :customer_id, :shipping_cost, :total_payment, :customer_id)
   end
 end

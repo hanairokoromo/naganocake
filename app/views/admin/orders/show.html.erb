@@ -23,10 +23,10 @@
   <h4>数量</h4>
   <%= order_details.amount %>
   <h4>合計</h4>
-  <%= order_details.order.total_payment %>
-  <%= form_with model: order_details, url: admin_order_detail_path, method: :patch do |f| %>
+  <%= order_details.price*order_details.amount %>
+  <%= form_with model: order_details, url: admin_order_details_path, method: :patch do |f| %>
     <h4>製作ステータス</h4>
-    <%= f.select :making_statuses, OrderDetail.making_statuses.keys %>
+    <%= f.select :making_status, OrderDetail.making_statuses.keys %>
     <%= f.submit '更新' %>
   <% end %>
 <% end %>
