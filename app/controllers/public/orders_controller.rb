@@ -1,7 +1,9 @@
 class Public::OrdersController < ApplicationController
+  before_action :authenticate_customer!
+  before_action :check_cart, only: [:new]
   
   def new
-    @addresses = Address.all
+    @addresses = current_customer.addresses
     @order = Order.new
   end
 
@@ -43,9 +45,7 @@ class Public::OrdersController < ApplicationController
   def complete
   end
 
-  def index
-    @orders = Order.all
-  end
+ 
 
   def show
     @order = Order.find(params[:id])
@@ -53,9 +53,22 @@ class Public::OrdersController < ApplicationController
      @total = @order.total_payment - 800
   end
   
+  def index
+    if customer_signed_in?
+      @orders = Order.where(customer_id: current_customer.id).order('created_at DESC')
+    end
+  end
+  
   private
   
   def order_params
-    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :customer_id, :shipping_cost, :total_payment, :customer_id)
+    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :customer_id, :shipping_cost, :total_payment)
   end
+  
+  def check_cart
+    if current_customer.cart_items.blank?
+      redirect_to cart_items_path
+    end
+  end
+  
 end
