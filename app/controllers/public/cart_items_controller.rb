@@ -6,8 +6,7 @@ class Public::CartItemsController < ApplicationController
   
   def update
     @cart_item = CartItem.find(params[:id])
-    @cart_item.update(cart_item_params)
-    @total = total_price(@cart_items).to_s(:delimited)
+    @cart_item.update(amount: params[:cart_item][:amount].to_i) #to_iで入力した個数を整数に変換
     redirect_to cart_items_path
   end
   
@@ -24,27 +23,24 @@ class Public::CartItemsController < ApplicationController
   end
   
   def create
-    if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
-      @cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
-      params[:cart_item][:amout] = params[:cart_item][:amount].to_i + @cart_item.amount
-      @cart_item.update(cart_item_params)
+    @cart_items = CartItem.all
+    @cart_item = current_customer.cart_items.new(cart_item_params)
+    @update_cart_item = CartItem.find_by(item: @cart_item.item)
+    #カートに入れた商品がカート内商品にあったときは数を足す
+    if @update_cart_item.present? && @cart_item.valid? #present? 存在すればtrue
+       @cart_item.amount += @update_cart_item.amount #カートに追加した個数 + カートにある個数 = 合計個数
+       @update_cart_item.update(amount: @cart_item.amount) #quantitiy(@cart_productのquantity)
+    elsif @cart_item.save #false = カートに同じ商品がない時
       redirect_to cart_items_path
     else
-      @cart_item = CartItem.new(cart_item_params)
-      @cart_item.customer_id = current_customer.id
-      if @cart_item.save
-        redirect_to cart_items_path
-      else
-        @item = @cart_item.item
-        flash[:error] = "個数を入力してください"
-        redirect_to items_path
-      end
+      @item = @cart_item.item#14行目の@carp_productのproduct_idを探してくる
+      render :index
     end
   end
   
   private
   
   def cart_item_params
-    params.require(:cart_item).permit(:item_id, :customer_id, :amount)
+    params.require(:cart_item).permit(:item_id, :amount)
   end
 end

@@ -15,11 +15,11 @@
               <tr>
                 <td>
                     <%= link_to item_path(item), class: "btn-link" do %>
-                      <%= image_tag item.image, size: "5×5" %>
+                      <%= image_tag item.image, height: "180" %>
                     <% end %>
                 </td>
                 <td><%= item.name %></td>
-                <td><%= item.price %></td>
+                <td><%= item.price %>円</td>
                 <td>
                   <% if item.is_active == true %>
                     <p><i class="fas fa-bullseye red"></i>販売中</p>

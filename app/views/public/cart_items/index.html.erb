@@ -18,17 +18,17 @@
                 <% @cart_items.each do |cart_item| %>
                 <tr>
                     <td>
-                        <%= image_tag cart_item.item.image, size: "5×5" %>
+                        <%= image_tag cart_item.item.image, height: "180" %>
                         <%= cart_item.item.name %>
                     </td>
-                    <td><%= cart_item.item.with_tax_price.floor.to_s(:delimited, delimiter: ',') %></td>
+                    <td><%= cart_item.item.with_tax_price.floor.to_s(:delimited, delimiter: ',') %>円</td>
                     <td>
-                        <%= form_with model: @cart_item, method: :post do |f| %>
+                        <%= form_with model: cart_item, url: cart_items_path, method: :post do |f| %>
                           <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10].to_a %>
                           <%= f.submit "変更", class: "btn btn-success" %>
                         <% end %>
                     </td>
-                    <td><%= cart_item.subtotal.floor.to_s(:delimited, delimiter: ',') %></td>
+                    <td><%= cart_item.subtotal.floor.to_s(:delimited, delimiter: ',') %>円</td>
                     <td><%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-danger" %></td>
                 </tr>
                 <% end %>
