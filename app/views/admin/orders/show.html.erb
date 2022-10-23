@@ -1,32 +1,31 @@
-<h1>注文履歴詳細</h1>
-<h4>購入者</h4>
-<%= @order.name %>
-<H4>注文日</H4>
-<%= @order.created_at %>
-<h4>配送先</h4>
-<%= @order.address %>
-<h4>支払方法</h4>
-<%= @order.payment_method_i18n %>
-<h4>料金</h4>
-<%= @order.total_payment %>
-<%= form_with model: @order, url: admin_order_path(@order), method: :patch do |f| %>
-  <h4>注文ステータス</h4>
-  <%= f.select :statuses, Order.statuses.keys %>
-  <%= f.submit '更新' %>
-<% end %>
-
-<% @order_details.each do |order_details| %>
-  <h4>商品名</h4>
-  <%= order_details.item.name %>
-  <h4>価格</h4>
-  <%= order_details.price %>
-  <h4>数量</h4>
-  <%= order_details.amount %>
-  <h4>合計</h4>
-  <%= order_details.price*order_details.amount %>
-  <%= form_with model: order_details, url: admin_order_details_path, method: :patch do |f| %>
-    <h4>製作ステータス</h4>
-    <%= f.select :making_status, OrderDetail.making_statuses.keys %>
-    <%= f.submit '更新' %>
-  <% end %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="d-flex aligin-items-center">
+      <h3 class="p-3 md-10 bg-secondary text-white">注文履歴詳細</h3>
+    </div>
+  </div>
+  <div class="col-xs-7">
+    <table class="table-borderless">
+      <tr>
+        <th>購入者</th>
+        <td><%= @order.name %></td>
+      </tr>
+      <tr>
+        <th>注文日</th>
+        <td><%= @order.created_at %></td>
+      </tr>
+      <tr>
+        <th>配送先</th>
+        <td><%= @order.address %></td>
+      </tr>
+      <tr>
+        <th>支払方法</th>
+        <td><%= @order.payment_method_i18n %></td>
+      </tr>
+      <tr>
+        <th>料金</th>
+        <td><%= @order.total_payment %>円</td>
+      </tr>
+    </table>
+  </div>
+</div>
