@@ -1,11 +1,27 @@
-<h1>注文履歴一覧</h1>
-<% @orders.each do |order| %>
-  <h4>購入日時</h4>
-  <%= link_to order.created_at.to_s, admin_order_path(order) %>
-  <h4>購入者</h4>
-  <%= order.name %>
-  <h4>注文個数</h4>
-  <%= order.order_details.all.sum(:amount) %>
-  <h4>注文ステータス</h4>
-  <%= order.status %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="d-flex aligin-items-center">
+      <h3 class="p-3 md-10 bg-secondary text-white">注文履歴一覧</h3>
+    </div>
+  </div>
+  <div class="row col-sm-8 offset-sm-2">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>購入日時</th>
+          <th>購入者</th>
+          <th>注文個数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+        <tr>
+          <td><%= link_to order.created_at.to_s, admin_order_path(order) %></td>
+          <td><%= order.name %></td>
+          <td><%= order.order_details.all.sum(:amount) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

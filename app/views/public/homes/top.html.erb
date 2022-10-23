@@ -1,29 +1,26 @@
 <div class="container">
-    <div class="row">
+    <div class="main-container">
         <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
             <h1>
                 welcome to
                 <i class="fas fa-birthday-cake"></i>
-                <strong>Naganocake</strong>
-                !!
+                <strong>Naganocake!</strong>
             </h1>
         </div>
-        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
             <h2 class="new-items">新着商品</h2>
-            <% @items.each do |item| %>
-            <div class="col-xs-3">
+            <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+              <% @items.each do |item| %>
                 <div class="mb-3">
                     <div class="item">
                         <%= link_to item_path(item.id) do %>
-                        <%= image_tag item.image %>
+                        <%= image_tag item.image, height: "180" %>
                         <% end %>
                         <h5 class="item-name"><%= item.name %></h5>
                         <p class="item-price">¥<%= item.price.to_s %>（税抜）</p>
                         <%= link_to "この商品を見る", item_path(item.id), class: "btn btn-primary" %>
                     </div>
-                </div>
+              <% end %>
             </div>
-            <% end %>
         </div>
     </div>
 </div>
