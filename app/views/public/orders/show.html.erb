@@ -30,15 +30,15 @@
                 <tobody class="thead-light">
                     <tr>
                         <th>商品合計</th>
-                        <td><%= @total %></td>
+                        <td><%= @total %>円</td>
                     </tr>
                     <tr>
                         <th>配送料</th>
-                        <td>¥<%= @order.shipping_cost.to_s(:delimited) %></td>
+                        <td><%= @order.shipping_cost.to_s(:delimited) %>円</td>
                     </tr>
                     <tr>
                         <th>ご請求額</th>
-                        <td>¥<%= @order.total_payment.to_s(:delimited) %></td>
+                        <td><%= (@total+800).to_s(:delimited) %>円</td>
                     </tr>
                 </tobody>
             </table>
@@ -60,9 +60,9 @@
                     <% @order_details.each do |order_detail| %>
                     <tr>
                         <td><%= order_detail.item.name %></td>
-                        <td><%= order_detail.item.with_tax_price.to_s %></td>
+                        <td><%= order_detail.item.with_tax_price.to_s %>円</td>
                         <td><%= order_detail.amount %></td>
-                        <td><%= (order_detail.item.with_tax_price*order_detail.amount).to_s %></td>
+                        <td><%= (order_detail.item.with_tax_price*order_detail.amount).to_s %>円</td>
                     </tr>
                     <% end %>
                 </tbody>
